@@ -3,9 +3,10 @@ const app = express()
 const weather = require('./data')
 
 app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
-    res.status(200).json({weather})
+    res.status(200).send(weather)
 })
 
 app.get('/:city', (req, res) => {
