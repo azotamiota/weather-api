@@ -29,7 +29,7 @@ describe('API test', () => {
     )
 
     it('3. Retrieve status 404 and error message at /cities/:city when desired city is not in API', async () => {
-        const response = await supertest(api).get('/cities/Non-existent-city')
+        const response = await supertest(api).get('/cities/Non-existing-city')
         expect(response.status).toBe(404)
         // expect(response.body).toMatch(/Not found/)
     })
@@ -48,7 +48,7 @@ describe('API test', () => {
             .expect({id: 5, ...testCity}, done)
     })
 
-    it("6. Update an existent city's weather by adding a new element", (done) => {
+    it("6. Update an existing city's weather by adding a new element", (done) => {
         supertest(api).patch('/cities/Rome')
             .send(testUpdate)
             .set('Accept', 'application/json')
@@ -61,7 +61,7 @@ describe('API test', () => {
                 "sunrise" : "07:45"}}, done)
     })
 
-    it("7. Retrieve error message when trying to update non-existent city's weather", (done) => {
+    it("7. Retrieve error message when trying to update non-existing city's weather", (done) => {
         supertest(api).patch('/cities/No such a city')
             .expect(404, done)
     })
