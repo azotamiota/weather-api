@@ -28,16 +28,17 @@ describe('API test', () => {
         }
     )
 
-    it('3. Retrieve local weather at /cities/:city', async () => {
+    it('3. Retrieve status 404 and error message at /cities/:city when desired city is not in API', async () => {
+        const response = await supertest(api).get('/cities/Non-existent-city')
+        expect(response.status).toBe(404)
+        // expect(response.body).toMatch(/Not found/)
+    })
+
+    it('4. Retrieve local weather at /cities/:city', async () => {
         const response = await supertest(api).get('/cities/Oslo').set('Accept', 'application/json')
         expect(response.body.id).toBe(4)
     })
 
-    it('4. Retrieve status 404 and error message at /cities/:city when desired city is not in API', async () => {
-        const response = await supertest(api).get('/cities/Non-existent-city')
-        expect(response.status).toBe(404)
-        expect(typeof response.body).toEqual('object')
-    })
 
     it('5. Add a new city with POST request at /cities', (done) => {
         supertest(api).post('/cities')
@@ -63,5 +64,16 @@ describe('API test', () => {
     it("7. Retrieve error message when trying to update non-existent city's weather", (done) => {
         supertest(api).patch('/cities/No such a city')
             .expect(404, done)
+    })
+
+    it("8. Retrieve status 204 on DELETE at /cities/:city", (done) => {
+        supertest(api).delete('/cities/Madrid')
+            .expect(201, done)
+    })
+
+    it("9. Retrieve 404 on DELETE if city is not in database", (done) => {
+        supertest(api).delete('/cities/City not in database')
+            .expect(404, done)
+            .expect('Content-Type', /text/)
     })
 })
