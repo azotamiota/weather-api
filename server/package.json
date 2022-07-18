@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll --verbose",
     "dev": "nodemon index.js",
-    "coverage": "jest --watchAll --coverage"
+    "cov": "jest --watchAll --coverage"
   },
   "keywords": [],
   "author": "",
