@@ -48,7 +48,7 @@ app.patch('/cities/:city', (req, res) => {
 app.delete('/cities/:city', (req, res) => {
     const city = req.params.city.toUpperCase()
     const citiesInDB = weather.map(c => Object.keys(c)).map(entry => entry[1])
-    console.log(citiesInDB);
+
     if(citiesInDB.includes(city)) {
         weather = weather.filter(c => {
             return !Object.keys(c).includes(city)
