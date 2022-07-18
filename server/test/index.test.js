@@ -31,11 +31,12 @@ describe('API test', () => {
     it('3. Retrieve status 404 and error message at /cities/:city when desired city is not in API', async () => {
         const response = await supertest(api).get('/cities/Non-existing-city')
         expect(response.status).toBe(404)
-        // expect(response.body).toMatch(/Not found/)
+        expect(response.error.text).toMatch(/Not found/)
     })
 
     it('4. Retrieve local weather at /cities/:city', async () => {
         const response = await supertest(api).get('/cities/Oslo').set('Accept', 'application/json')
+        console.log('res body: ', response.body)
         expect(response.body.id).toBe(4)
     })
 
