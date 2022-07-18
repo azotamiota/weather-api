@@ -22,5 +22,5 @@
 - Make sure you are in `server` directory. `cd server`
 - Run the test with `npm run test`
 - Check test coverage with `npm run cov`
-- 100 % coverage
+- 100% coverage
 
