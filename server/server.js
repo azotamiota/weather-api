@@ -59,5 +59,5 @@ app.delete('/cities/:city', (req, res) => {
     }
 })
 
-console.log('lets try again and again')
+
 module.exports = app
