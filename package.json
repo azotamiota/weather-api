@@ -4,6 +4,7 @@
   "description": "## Installation",
   "main": "index.js",
   "scripts": {
+    "start" : "node server-starter.js",
     "test": "jest --watchAll --verbose",
     "dev": "nodemon server-starter.js",
     "cov": "jest --watchAll --coverage"
