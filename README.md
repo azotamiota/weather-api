@@ -2,7 +2,16 @@
 
 ## Installation
 
+- Make sure you are in `server` directory `cd server`.
 - Install packages with `npm install`
+
+## How to use it
+
+- Start the server running `npm run dev`.
+- Open your browser and visit `http://localhost:5000`
+- Check the routes available in `server.js`
+- Test `POST DELETE PATCH` methods with [Postman](https://postman.com)
+- `Ctrl + C` to stop server running
 
 ## Technical information
 
@@ -19,8 +28,9 @@
 
 ## Test
 
-- Make sure you are in `server` directory. `cd server`
+- Make sure you are in `server` directory.
 - Run the test with `npm run test`
 - Check test coverage with `npm run cov`
 - 100% coverage
+- Press "q" to exit testing
 
