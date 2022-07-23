@@ -73,8 +73,30 @@ app.get('/cities/:city', (req, res) => {
 
 app.post('/', (req, res) => {
  
-    console.log('req.body: ', req)
-    res.send('req.body-sent as res.send:', req.body)
+    console.log('req.body: ', req.body)
+    
+    readFile('./weather.json', 'utf-8', (err, jsonString) => {
+
+        if(err) {res.status(500).json({error: 'Internal server error, try again later'})}
+
+        try {
+            const data = JSON.parse(jsonString)
+            const jsonLength = Object.keys(data).length
+            writeFile('./weather.json', JSON.stringify({...data, [jsonLength + 1] : {"city": req.body.city.toUpperCase(), 
+                "Celsius": req.body.celsius, "Fahrenheit": req.body.fahrenheit,
+                "wind": Boolean(req.body.wind), "rain" : Boolean(req.body.rain)}}, null, 2), (err, result) => {
+                    if(err) console.log('Error while updating JSON: ', err);
+                    console.log('result: ', result)
+                    res.redirect('https://google.com').sendStatus(201)
+            })
+        } catch (error) {
+            console.log('Error while trying to write data: ', error)
+            res.status(500).send('Error while trying to write data: ')
+        }
+
+        
+    })
+    
     // const newCity = req.body
     // const newID = weather.length + 1
     // weather.push({id: newID, ...newCity})

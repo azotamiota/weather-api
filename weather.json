@@ -28,17 +28,10 @@
     "rain": true
   },
   "5": {
-    "city": "BERLIN",
-    "Celsius": 21,
-    "Fahrenheit": 70,
-    "wind": false,
-    "rain": false
-  },
-  "6": {
-    "city": "ATHENS",
-    "Celsius": 23,
-    "Fahrenheit": 76,
+    "city": "KYIV",
+    "Celsius": "29",
+    "Fahrenheit": "77",
     "wind": true,
-    "rain": false
+    "rain": true
   }
 }
