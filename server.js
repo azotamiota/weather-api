@@ -5,6 +5,11 @@ const cors = require('cors')
 const weatherJSON = require('./weather.json')
 const {readFile, writeFile, appendFile} = require('fs')
 
+
+// static assets
+app.use(express.static('./client'))
+
+
 // readFile('./weather.json', 'utf-8', (err, jsonString) => {
 //     if(err) {
 //         console.log(err)
@@ -27,7 +32,7 @@ const {readFile, writeFile, appendFile} = require('fs')
 
 app.use(cors())
 app.use(express.json())
-// app.use(express.urlencoded({extended: false}))  // uncomment when connected with frontend form
+app.use(express.urlencoded({extended: false}))  // uncomment when connected with frontend form
 
 app.get('/', (req, res) => {
     readFile('./weather.json', 'utf-8', (err, jsonString) => {
@@ -65,7 +70,10 @@ app.get('/cities/:city', (req, res) => {
     })
 })
 
-app.post('/cities', (req, res) => {
+app.post('/', (req, res) => {
+
+
+
     const newCity = req.body
     const newID = weather.length + 1
     weather.push({id: newID, ...newCity})
