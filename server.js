@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
 let weather = require('./data')
+const weatherJSON = require('./weather.json')
+const {readFile, writeFile} = require('fs')
+
+console.log('weatherJSON: ', weatherJSON['4'])
 
 app.use(express.json())
 // app.use(express.urlencoded({extended: false}))  // uncomment when connected with frontend form
