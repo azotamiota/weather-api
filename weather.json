@@ -26,5 +26,12 @@
     "Fahrenheit": "89",
     "wind": true,
     "rain": true
+  },
+  "5": {
+    "city": "ANGARSK",
+    "Celsius": "33",
+    "Fahrenheit": "98",
+    "wind": false,
+    "rain": true
   }
 }

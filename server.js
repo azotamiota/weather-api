@@ -1,35 +1,12 @@
 const express = require('express')
 const app = express()
-// const path = require('path')
 let weather = require('./data')
 const cors = require('cors')
 const weatherJSON = require('./weather.json')
 const {readFile, writeFile, appendFile} = require('fs')
-// const absolute = path.resolve(__dirname, 'server.js')
 
 // static assets
 // app.use(express.static('./client'))
-
-
-// readFile('./weather.json', 'utf-8', (err, jsonString) => {
-//     if(err) {
-//         console.log(err)
-//     }
-//     try {
-
-//         const data = JSON.parse(jsonString)
-
-//         writeFile('./weather.json', JSON.stringify({...data, "6" : {"city" : "Athens", "Celsius": 23, "Fahrenheit": 76, "wind": true, "rain": false}}, null, 2), (err, result) => {
-//             if(err) console.log('Error while updating JSON: ', err);
-//             console.log('result: ', result)
-//         })
-        
-
-//         console.log('data: ', data['4'])
-//     } catch (error) {
-//         console.log('Error while parsin Json: ', error)
-//     }
-// })
 
 app.use(cors())
 app.use(express.json())
@@ -52,7 +29,6 @@ app.get('/', (req, res) => {
 app.get('/cities/:city', (req, res) => {
     const city = req.params.city.toUpperCase()
 
-
     readFile('./weather.json', 'utf-8', (err, jsonString) => {
         if(err){
             res.status(500).json({error: 'Internal server error, try again later'})
@@ -72,8 +48,6 @@ app.get('/cities/:city', (req, res) => {
 })
 
 app.post('/', (req, res) => {
- 
-    console.log('req.body: ', req.body)
     
     readFile('./weather.json', 'utf-8', (err, jsonString) => {
 
@@ -87,7 +61,7 @@ app.post('/', (req, res) => {
                 "wind": Boolean(req.body.wind), "rain" : Boolean(req.body.rain)}}, null, 2), (err, result) => {
                     if(err) console.log('Error while updating JSON: ', err);
                     console.log('result: ', result)
-                    res.redirect('http://127.0.0.1:5501/index.html').sendStatus(201)
+                    res.status(201).redirect('http://127.0.0.1:5501/index.html')
             })
         } catch (error) {
             console.log('Error while trying to write data: ', error)
@@ -96,11 +70,6 @@ app.post('/', (req, res) => {
 
         
     })
-    
-    // const newCity = req.body
-    // const newID = weather.length + 1
-    // weather.push({id: newID, ...newCity})
-    // res.status(201).json({id: newID, ...newCity})
 })
 
 app.patch('/cities/:city', (req, res) => {
