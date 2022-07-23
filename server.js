@@ -73,7 +73,7 @@ app.get('/cities/:city', (req, res) => {
 
 app.post('/', (req, res) => {
  
-    console.log('req.body: ', req.body)
+    console.log('req.body: ', req)
     res.send('POST-POST')
     // const newCity = req.body
     // const newID = weather.length + 1
