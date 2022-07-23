@@ -4,25 +4,25 @@ let weather = require('./data')
 const weatherJSON = require('./weather.json')
 const {readFile, writeFile, appendFile} = require('fs')
 
-readFile('./weather.json', 'utf-8', (err, jsonString) => {
-    if(err) {
-        console.log(err)
-    }
-    try {
+// readFile('./weather.json', 'utf-8', (err, jsonString) => {
+//     if(err) {
+//         console.log(err)
+//     }
+//     try {
 
-        const data = JSON.parse(jsonString)
+//         const data = JSON.parse(jsonString)
 
-        writeFile('./weather.json', JSON.stringify({...data, "6" : {"city" : "Athens", "Celsius": 23, "Fahrenheit": 76, "wind": true, "rain": false}}, null, 2), (err, result) => {
-            if(err) console.log('Error while updating JSON: ', err);
-            console.log('result: ', result)
-        })
+//         writeFile('./weather.json', JSON.stringify({...data, "6" : {"city" : "Athens", "Celsius": 23, "Fahrenheit": 76, "wind": true, "rain": false}}, null, 2), (err, result) => {
+//             if(err) console.log('Error while updating JSON: ', err);
+//             console.log('result: ', result)
+//         })
         
 
-        console.log('data: ', data['4'])
-    } catch (error) {
-        console.log('Error while parsin Json: ', error)
-    }
-})
+//         console.log('data: ', data['4'])
+//     } catch (error) {
+//         console.log('Error while parsin Json: ', error)
+//     }
+// })
 
 
 app.use(express.json())
