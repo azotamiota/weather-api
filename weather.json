@@ -21,16 +21,9 @@
     "rain": false
   },
   "4": {
-    "city": "OSLO",
-    "Celsius": 12,
-    "Fahrenheit": 53,
-    "wind": false,
-    "rain": true
-  },
-  "5": {
-    "city": "KYIV",
-    "Celsius": "29",
-    "Fahrenheit": "77",
+    "city": "TIRANA",
+    "Celsius": "34",
+    "Fahrenheit": "89",
     "wind": true,
     "rain": true
   }

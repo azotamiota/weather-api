@@ -87,7 +87,7 @@ app.post('/', (req, res) => {
                 "wind": Boolean(req.body.wind), "rain" : Boolean(req.body.rain)}}, null, 2), (err, result) => {
                     if(err) console.log('Error while updating JSON: ', err);
                     console.log('result: ', result)
-                    res.redirect('https://google.com').sendStatus(201)
+                    res.redirect('http://127.0.0.1:5501/index.html').sendStatus(201)
             })
         } catch (error) {
             console.log('Error while trying to write data: ', error)
