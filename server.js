@@ -2,27 +2,66 @@ const express = require('express')
 const app = express()
 let weather = require('./data')
 const weatherJSON = require('./weather.json')
-const {readFile, writeFile} = require('fs')
+const {readFile, writeFile, appendFile} = require('fs')
 
-console.log('weatherJSON: ', weatherJSON['4'])
+readFile('./weather.json', 'utf-8', (err, jsonString) => {
+    if(err) {
+        console.log(err)
+    }
+    try {
+
+        const data = JSON.parse(jsonString)
+
+        writeFile('./weather.json', JSON.stringify({...data, "6" : {"city" : "Athens", "Celsius": 23, "Fahrenheit": 76, "wind": true, "rain": false}}, null, 2), (err, result) => {
+            if(err) console.log('Error while updating JSON: ', err);
+            console.log('result: ', result)
+        })
+        
+
+        console.log('data: ', data['4'])
+    } catch (error) {
+        console.log('Error while parsin Json: ', error)
+    }
+})
+
 
 app.use(express.json())
 // app.use(express.urlencoded({extended: false}))  // uncomment when connected with frontend form
 
 app.get('/', (req, res) => {
-    res.status(200).send(weather)
+    readFile('./weather.json', 'utf-8', (err, jsonString) => {
+        if(err){
+            res.status(500).json({error: 'Internal server error, try again later'})
+        }
+        try {
+            const data = JSON.parse(jsonString)
+            res.status(200).send(data)
+        } catch (error) {
+            res.status(500).send('Error: ', error)
+        }
+    })
 })
 
 app.get('/cities/:city', (req, res) => {
     const city = req.params.city.toUpperCase()
-    const currentCity = weather.filter(c => {
-        return Object.keys(c).includes(city)
+
+
+    readFile('./weather.json', 'utf-8', (err, jsonString) => {
+        if(err){
+            res.status(500).json({error: 'Internal server error, try again later'})
+        }
+        try {
+            const data = JSON.parse(jsonString)
+            for (let i = 1; i < Object.entries(data).length; i++) {
+                if (data[i]['city'] === city) {
+                    res.status(200).send(data[i])
+                }
+            }
+
+        } catch (error) {
+            res.status(500).send('Error: ', error)
+        }
     })
-    if(currentCity.length > 0) {
-        res.status(200).send(currentCity[0])
-    } else {
-        res.status(404).send(`<h1>404 Not found <br> ${req.params.city} is not in the database</h1>`)
-    }
 })
 
 app.post('/cities', (req, res) => {
