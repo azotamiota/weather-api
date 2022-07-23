@@ -11,7 +11,24 @@
 <body>
     <header>
         <h1>Welcome to the limited weather website</h1>
-        <main id="main-grid"></main>
+        <main id="container">
+            <section id="main-grid"></section>
+            <form id='input' action="../server.js" method="POST">
+                <label>Add further cities</label><br>
+                <input for='acity' id="new-city" type="text" name="city" placeholder="Enter a city" required><br><br>
+                <label>Enter temperatures</label><br>
+                <input for='celsius' id="new-celsius" type="text" name="celsius" placeholder="Celsius" required><br>
+                <input for='fahrenheit' id="new-fahrenheit" type="text" name="fahrenheit" placeholder="Fahrenheit" required><br><br>
+                <label>Choose an addon:</label><br>
+                <label>
+                    <input id="if-celsius" type="checkbox" value="wind">wind
+                </label>
+                <label>
+                    <input id="if-fahrenheit" type="checkbox" value="rain">rain
+                </label><br><br>
+                <input type="submit" value="Submit">                
+            </form>
+        </main>
     </header>
 </body>
 </html>
