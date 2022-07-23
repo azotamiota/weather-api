@@ -1,4 +1,4 @@
-const root = "http://localhost:5000"
+const root = "https://weather-api-backend-only.herokuapp.com/"
 const mainGrid = document.getElementById('main-grid')
 
 const fetchInitialData = () => {
