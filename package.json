@@ -4,7 +4,7 @@
   "description": "## Installation",
   "main": "index.js",
   "scripts": {
-    "start" : "node server-starter.js",
+    "start": "node server-starter.js",
     "test": "jest --watchAll --verbose",
     "dev": "nodemon server-starter.js",
     "cov": "jest --watchAll --coverage"
@@ -26,6 +26,7 @@
     "supertest": "^6.2.4"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.1"
   }
 }

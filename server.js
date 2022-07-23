@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 let weather = require('./data')
+const cors = require('cors')
 const weatherJSON = require('./weather.json')
 const {readFile, writeFile, appendFile} = require('fs')
 
@@ -24,7 +25,7 @@ const {readFile, writeFile, appendFile} = require('fs')
 //     }
 // })
 
-
+app.use(cors())
 app.use(express.json())
 // app.use(express.urlencoded({extended: false}))  // uncomment when connected with frontend form
 
