@@ -1,4 +1,5 @@
-const root = "https://weather-api-backend-only.herokuapp.com/"
+const root = "https://weather-api-backend-only.herokuapp.com"
+const localRoot = 'http://localhost:5000'
 const mainGrid = document.getElementById('main-grid')
 
 const fetchInitialData = () => {
@@ -36,6 +37,8 @@ const displayData = (data) => {
         const createAddons = document.createElement('h5')
         gridElem.appendChild(createAddons)
         createAddons.textContent = (data[elem]['wind'] ? 'windy' : '') + (data[elem]['rain'] ? ' rainy' : '')
+
+        // const checkedValue = document.querySelector('.messageCheckbox:checked').value; // later to check checkboxes if checked
     }
 
 }

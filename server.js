@@ -1,13 +1,14 @@
 const express = require('express')
 const app = express()
+// const path = require('path')
 let weather = require('./data')
 const cors = require('cors')
 const weatherJSON = require('./weather.json')
 const {readFile, writeFile, appendFile} = require('fs')
-
+// const absolute = path.resolve(__dirname, 'server.js')
 
 // static assets
-app.use(express.static('./client'))
+// app.use(express.static('./client'))
 
 
 // readFile('./weather.json', 'utf-8', (err, jsonString) => {
@@ -71,13 +72,13 @@ app.get('/cities/:city', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-
-
-
-    const newCity = req.body
-    const newID = weather.length + 1
-    weather.push({id: newID, ...newCity})
-    res.status(201).json({id: newID, ...newCity})
+ 
+    console.log('req.body: ', req.body)
+    res.send('POST-POST')
+    // const newCity = req.body
+    // const newID = weather.length + 1
+    // weather.push({id: newID, ...newCity})
+    // res.status(201).json({id: newID, ...newCity})
 })
 
 app.patch('/cities/:city', (req, res) => {
