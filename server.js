@@ -10,11 +10,9 @@ const {readFile, writeFile, appendFile} = require('fs')
 
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))  // uncomment when connected with frontend form
+app.use(express.urlencoded({extended: false}))  // necessary middleware when getting data from frontend form
 
 app.get('/', (req, res) => {
-    console.log('req.query.city: ', req.query.city)
-    console.log('req.query.delete: ', req.query.delete)
     readFile('./weather.json', 'utf-8', (err, jsonString) => {
         if(err){
             res.status(500).json({error: 'Internal server error, try again later'})
@@ -27,34 +25,31 @@ app.get('/', (req, res) => {
                     if (data[i].city === req.query.delete.toUpperCase()) {
                         delete data[i]
                         writeFile('./weather.json', JSON.stringify({...data}, null, 2), (err, result) => {
-                            if(err) console.log('Error while deleting object property: ', err);
+                            if(err) console.log('Error while deleting JSON property: ', err);
                         res.status(301).redirect('http://127.0.0.1:5501/index.html')
-                    })
+                        })
                     }
                 }
             } else
 
             if (req.query.city) {
                 for (let i = 1; i <= Object.keys(data).length; i++) {
-                console.log('data[String(i)].city: ', data[String(i)].city, 'data[i].city: ', data[i].city )
                 if (data[i].city === req.query.city.toUpperCase()) {
-                console.log('data i city: ',data[i].city, 'req body city', req.query.city.toUpperCase() )
-                data[i].city = req.query.city.toUpperCase()
-                data[i].Celsius = req.query.Celsius
-                data[i].Fahrenheit = req.query.Fahrenheit
-                data[i].wind = Boolean(req.query.wind)
-                data[i].rain = Boolean(req.query.rain)
-                    writeFile('./weather.json', JSON.stringify({...data}, null, 2), (err, result) => {
-                        if(err) console.log('Error while updating JSON: ', err);
-                        // console.log('result: ', result)
-                        res.status(301).redirect('http://127.0.0.1:5501/index.html')
-                    })
-                }
+                    data[i].city = req.query.city.toUpperCase()
+                    data[i].Celsius = req.query.Celsius
+                    data[i].Fahrenheit = req.query.Fahrenheit
+                    data[i].wind = Boolean(req.query.wind)
+                    data[i].rain = Boolean(req.query.rain)
+                        writeFile('./weather.json', JSON.stringify({...data}, null, 2), (err, result) => {
+                            if(err) console.log('Error while updating JSON property: ', err);
+                            // console.log('result: ', result)
+                            res.status(301).redirect('http://127.0.0.1:5501/index.html')
+                        })
+                    }
                 }
             } else {
                 res.status(200).send(data)
             }
-
         } catch (error) {
             res.status(500).send('Error: ', error)
         }
@@ -94,7 +89,7 @@ app.post('/', (req, res) => {
             writeFile('./weather.json', JSON.stringify({...data, [jsonLength + 1] : {"city": req.body.city.toUpperCase(), 
                 "Celsius": req.body.celsius, "Fahrenheit": req.body.fahrenheit,
                 "wind": Boolean(req.body.wind), "rain" : Boolean(req.body.rain)}}, null, 2), (err, result) => {
-                    if(err) console.log('Error while updating JSON: ', err);
+                    if(err) console.log('Error while adding data to JSON: ', err);
                     // console.log('result: ', result)
                     res.status(201).redirect('http://127.0.0.1:5501/index.html')
             })
