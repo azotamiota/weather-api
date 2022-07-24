@@ -11,7 +11,7 @@
     "Celsius": 28,
     "Fahrenheit": 82,
     "wind": false,
-    "rain": false
+    "rain": true
   },
   "3": {
     "city": "ROME",
@@ -19,19 +19,5 @@
     "Fahrenheit": 80,
     "wind": true,
     "rain": false
-  },
-  "4": {
-    "city": "TIRANA",
-    "Celsius": "34",
-    "Fahrenheit": "89",
-    "wind": true,
-    "rain": true
-  },
-  "5": {
-    "city": "ANGARSK",
-    "Celsius": "33",
-    "Fahrenheit": "98",
-    "wind": false,
-    "rain": true
   }
 }

@@ -35,7 +35,7 @@ app.get('/cities/:city', (req, res) => {
         }
         try {
             const data = JSON.parse(jsonString)
-            for (let i = 1; i < Object.entries(data).length; i++) {
+            for (let i = 1; i <= Object.entries(data).length; i++) {
                 if (data[i]['city'] === city) {
                     res.status(200).send(data[i])
                 }
