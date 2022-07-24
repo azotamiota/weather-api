@@ -1,10 +1,10 @@
 {
   "1": {
     "city": "LONDON",
-    "wind": false,
-    "rain": true,
-    "Celsius": "23",
-    "Fahrenheit": "99"
+    "wind": true,
+    "rain": false,
+    "Celsius": "22",
+    "Fahrenheit": "97"
   },
   "2": {
     "city": "ROME",
@@ -15,9 +15,9 @@
   },
   "3": {
     "city": "MADRID",
-    "Celsius": "44",
-    "Fahrenheit": "99",
-    "wind": false,
+    "Celsius": "39",
+    "Fahrenheit": "101",
+    "wind": true,
     "rain": true
   },
   "4": {
