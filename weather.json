@@ -1,23 +1,30 @@
 {
   "1": {
     "city": "LONDON",
-    "Celsius": 19,
-    "Fahrenheit": 66,
-    "wind": true,
-    "rain": true
+    "wind": false,
+    "rain": true,
+    "Celsius": "23",
+    "Fahrenheit": "99"
   },
   "2": {
-    "city": "MADRID",
-    "Celsius": 28,
-    "Fahrenheit": 82,
+    "city": "ROME",
+    "Celsius": "32",
+    "Fahrenheit": "95",
     "wind": false,
     "rain": true
   },
   "3": {
-    "city": "ROME",
-    "Celsius": 27,
-    "Fahrenheit": 80,
-    "wind": true,
+    "city": "MADRID",
+    "Celsius": "44",
+    "Fahrenheit": "99",
+    "wind": false,
+    "rain": true
+  },
+  "4": {
+    "city": "HELSINKI",
+    "Celsius": "33",
+    "Fahrenheit": "98",
+    "wind": false,
     "rain": false
   }
 }
